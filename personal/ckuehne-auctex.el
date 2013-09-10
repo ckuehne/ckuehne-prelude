@@ -12,6 +12,10 @@
 (load "auctex.el" nil t t)
 (load "preview-latex.el" nil t t)
 
+;; prelude defaults for latex mode
+(turn-on-auto-fill)
+(abbrev-mode +1)
+
 ;; set default latex to pdflatex
 (setq latex-run-command "pdflatex")
 (setq TeX-PDF-mode t)
@@ -53,7 +57,6 @@
       '(("Skim" "/Applications/Skim.app/Contents/SharedSupport/displayline %q")))
 
 (setq TeX-view-program-selection '((output-pdf "Skim")))
-
 
 (provide 'ckuehne-auctex)
 ;;; ckuehne-auctex.el ends here

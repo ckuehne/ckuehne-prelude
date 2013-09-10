@@ -27,8 +27,8 @@
 (require 'ckuehne-orgmode)
 
 ;; OSX specific settings
-;; (when (eq system-type 'darwin)
-;; (require 'ckuehne-osx))
+(when (eq system-type 'darwin)
+  (require 'ckuehne-osx))
 
 
 ;; reduce the frequency of garbage collection by making it happen on

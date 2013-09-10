@@ -3,6 +3,23 @@
 
 ;;; Code:
 
+;; Some variable definitions some prelude functions expect.
+(defvar prelude-auto-save nil
+  "Non-nil values enable Prelude's auto save.")
+
+(defvar prelude-guru t
+  "Non-nil values enable guru-mode.")
+
+(defvar prelude-whitespace t
+  "Non-nil values enable Prelude's whitespace visualization.")
+
+(defvar prelude-clean-whitespace-on-save t
+  "Cleanup whitespace from file before it's saved.
+Will only occur if prelude-whitespace is also enabled.")
+
+(defvar prelude-flyspell t
+  "Non-nil values enable Prelude's flyspell support.")
+
 ;; Death to the tabs!  However, tabs historically indent to the next
 ;; 8-character offset; specifying anything else will cause *mass*
 ;; confusion, as it will change the appearance of every existing file.
@@ -124,7 +141,14 @@ The body of the advice is in BODY."
 
 ;; ido-mode
 (require 'ido)
-(require 'ido-ubiquitous)
+;; TODO: the following are somewhat problematic
+;; the render for example rgrep unusable. also
+;; they hinder ido-find-file. The actual TODO is:
+;; find out which hinders what.
+;; Answer: seems to be ido-ubiquitous or rather rgrep which
+;; does not like to be called programatically. New TODO: google
+;; for solutions.
+;; (require 'ido-ubiquitous)
 (require 'flx-ido)
 ;; (setq ido-enable-prefix nil
 ;;       ido-enable-flex-matching t
@@ -135,11 +159,11 @@ The body of the advice is in BODY."
 ;;       ido-default-file-method 'selected-window
 ;;       ido-auto-merge-work-directories-length -1)
 (ido-mode +1)
-(ido-ubiquitous-mode +1)
+;; (ido-ubiquitous-mode +1)
 ;; smarter fuzzy matching for ido
 (flx-ido-mode +1)
 ;; disable ido faces to see flx highlights
-;; (setq ido-use-faces nil)
+(setq ido-use-faces nil)
 
 ;; smex, remember recently and most frequently used commands
 (require 'smex)

@@ -6,6 +6,8 @@
 (require 'exec-path-from-shell)
 (exec-path-from-shell-initialize)
 
+(menu-bar-mode 1)
+
 
 (provide 'ckuehne-osx)
 ;;; ckuehne-osx.el ends here

@@ -295,6 +295,11 @@ indent yanked text (with prefix arg don't indent)."
 ;; enable winner-mode to manage window configurations
 (winner-mode +1)
 
+;; Below is my own stuff. Above is prelude.
+
+(setq visible-bell t)
+
+
 (provide 'ckuehne-editor)
 
 ;;; ckuehne-editor.el ends here

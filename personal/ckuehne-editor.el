@@ -297,6 +297,7 @@ indent yanked text (with prefix arg don't indent)."
 
 ;; Below is my own stuff. Above is prelude.
 
+;; I don't like beeps.
 (setq visible-bell t)
 
 

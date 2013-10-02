@@ -12,6 +12,10 @@
 (load "auctex.el" nil t t)
 (load "preview-latex.el" nil t t)
 
+;; activate AUCTeX-RefTeX interface; see C-h i m RefTeX m auctex
+(setq reftex-plug-into-AUCTeX t)
+(add-hook 'LaTeX-mode-hook 'turn-on-reftex)   ; with AUCTeX LaTeX mode
+
 ;; prelude defaults for latex mode
 (turn-on-auto-fill)
 (abbrev-mode +1)

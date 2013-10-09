@@ -22,6 +22,8 @@
 (setq org-capture-templates
       '(("t" "Todo" entry (file+headline "~/Documents/gtd/todo.org" "Captured")
          "* TODO %?\n %i")
+        ("f" "Food-Journal" entry (file+datetree "~/Documents/gtd/org/foodjournal.org")
+         "* %?\nEntered on %U\n %i")
         ("j" "Journal" entry (file+datetree "~/Documents/gtd/org/journal.org")
          "* %?\nEntered on %U\n %i")
         ("d" "d for diss")

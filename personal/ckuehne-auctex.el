@@ -12,6 +12,13 @@
 (load "auctex.el" nil t t)
 (load "preview-latex.el" nil t t)
 
+;; from the auctex info docs:
+;; If you want to make AUCTeX aware of style files and multi-file
+;; documents right away, insert the following in your `.emacs' file.
+(setq TeX-auto-save t)
+(setq TeX-parse-self t)
+(setq-default TeX-master nil)
+
 ;; activate AUCTeX-RefTeX interface; see C-h i m RefTeX m auctex
 (setq reftex-plug-into-AUCTeX t)
 (add-hook 'LaTeX-mode-hook 'turn-on-reftex)   ; with AUCTeX LaTeX mode

@@ -196,8 +196,8 @@ The body of the advice is in BODY."
     (add-hook 'before-save-hook 'prelude-cleanup-maybe nil t)
     (whitespace-mode +1)))
 
-(add-hook 'text-mode-hook 'prelude-enable-flyspell)
-(add-hook 'text-mode-hook 'prelude-enable-whitespace)
+;; (add-hook 'text-mode-hook 'prelude-enable-flyspell)
+;; (add-hook 'text-mode-hook 'prelude-enable-whitespace)
 
 ;; enable narrowing commands
 (put 'narrow-to-region 'disabled nil)
@@ -227,8 +227,9 @@ The body of the advice is in BODY."
 ;; enable some really cool extensions like C-x C-j(dired-jump)
 (require 'dired-x)
 
+;; For some strange reason, (require 'ediff) messes with ediff auto refinement
+;; (require 'ediff) 
 ;; ediff - don't start another frame
-(require 'ediff)
 (setq ediff-window-setup-function 'ediff-setup-windows-plain)
 
 ;; clean up obsolete buffers automatically
@@ -299,6 +300,7 @@ indent yanked text (with prefix arg don't indent)."
 
 ;; I don't like beeps.
 (setq visible-bell t)
+(setq-default ediff-auto-refine 'on)
 
 
 (provide 'ckuehne-editor)

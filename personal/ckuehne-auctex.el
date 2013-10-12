@@ -69,5 +69,79 @@
 
 (setq TeX-view-program-selection '((output-pdf "Skim")))
 
+;; from http://tex.stackexchange.com/a/64570
+(defun my-run-latex ()
+  (interactive)
+  (TeX-save-document (TeX-master-file))
+  (TeX-command "LaTeX" 'TeX-master-file -1))
+
+;; My own fill paragraph that switches between filling the paragraph or
+;; putting each sentence on single line.  The latter works well with
+;; diffs.
+
+;; From
+;; http://pleasefindattached.blogspot.de/2011/12/emacsauctex-sentence-fill-greatly.html
+(defadvice LaTeX-fill-region-as-paragraph (around LaTeX-sentence-filling)
+  "Start each sentence on a new line."
+  (let ((from (ad-get-arg 0))
+        (to-marker (set-marker (make-marker) (ad-get-arg 1)))
+        tmp-end)
+    (message "Execute LaTeX-sentence-filling.")
+    (while (< from (marker-position to-marker))
+      (forward-sentence)
+      ;; might have gone beyond to-marker --- use whichever is smaller:
+      (ad-set-arg 1 (setq tmp-end (min (point) (marker-position to-marker))))
+      ad-do-it
+      (ad-set-arg 0 (setq from (point)))
+      (unless (or
+               (bolp)
+               (looking-at "\\s *$"))
+        (LaTeX-newline)))
+    (set-marker to-marker nil)))
+
+;; From http://ergoemacs.org/emacs/modernization_fill-paragraph.html
+;; With (ad-deactivate 'LaTeX-fill-region-as-paragraph)
+;; and (ad-deactivate 'LaTeX-fill-region-as-paragraph) added by me
+;; to facilitate LaTeX-sentence-filling advice from above.
+(defun compact-uncompact-block ()
+  "Remove or add line ending chars on current paragraph.
+This command is similar to a toggle of `fill-paragraph'.
+When there is a text selection, act on the region."
+  (interactive)
+
+  ;; This command symbol has a property “'stateIsCompact-p”.
+  (let (currentStateIsCompact (bigFillColumnVal 90002000) (deactivate-mark nil))
+    ;; 90002000 is just random. you can use `most-positive-fixnum'
+
+    (save-excursion
+      ;; Determine whether the text is currently compact.
+      (setq currentStateIsCompact
+            (if (eq last-command this-command)
+                (get this-command 'stateIsCompact-p)
+              (if (> (- (line-end-position) (line-beginning-position)) fill-column) t nil) ) )
+
+      (if (region-active-p)
+          (if currentStateIsCompact
+              (fill-region (region-beginning) (region-end))
+            (let ((fill-column bigFillColumnVal))
+              (fill-region (region-beginning) (region-end))) )
+        (if currentStateIsCompact
+            (progn
+              (ad-deactivate 'LaTeX-fill-region-as-paragraph)
+              (fill-paragraph nil))
+          (progn
+            (ad-activate 'LaTeX-fill-region-as-paragraph)
+          (let ((fill-column bigFillColumnVal))
+            (fill-paragraph nil)) ) ) )
+
+      (put this-command 'stateIsCompact-p (if currentStateIsCompact nil t)) ) ) )
+
+(defun my-LaTeX-hook ()
+  (local-set-key (kbd "s-r") 'TeX-command-master)
+  (local-set-key (kbd "M-q") 'compact-uncompact-block)
+)
+
+(add-hook 'LaTeX-mode-hook 'my-LaTeX-hook)
+
 (provide 'ckuehne-auctex)
 ;;; ckuehne-auctex.el ends here

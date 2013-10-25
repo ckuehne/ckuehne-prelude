@@ -1,3 +1,4 @@
+(message "Loading ckuehne-prelude setup.")
 (defvar dot-emacs-dot-d (file-name-directory load-file-name)
   "The root dir of the user configurations.")
 

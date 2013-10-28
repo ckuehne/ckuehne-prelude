@@ -318,6 +318,11 @@ indent yanked text (with prefix arg don't indent)."
               (add-hook 'ediff-quit-hook restore-window-configuration 'append)
               (add-hook 'ediff-suspend-hook restore-window-configuration 'append))))
 
+;; Eclipse-like behavior for moving lines up and down (M-up, M-down)
+(prelude-require-package 'move-text)
+(require 'move-text)
+(move-text-default-bindings)
+
 (provide 'ckuehne-editor)
 
 ;;; ckuehne-editor.el ends here

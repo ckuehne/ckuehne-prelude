@@ -302,6 +302,21 @@ indent yanked text (with prefix arg don't indent)."
 (setq visible-bell t)
 (setq-default ediff-auto-refine 'on)
 
+;; make ediff restore previous window configuration after it is quit
+;; from http://www.emacswiki.org/emacs/EdiffMode#toc3
+(add-hook 'ediff-load-hook
+          (lambda ()
+            
+            (add-hook 'ediff-before-setup-hook
+                      (lambda ()
+                        (message "execute ediff-before-setup-hook")
+                        (setq ediff-saved-window-configuration (current-window-configuration))))
+            
+            (let ((restore-window-configuration
+                   (lambda ()
+                     (set-window-configuration ediff-saved-window-configuration))))
+              (add-hook 'ediff-quit-hook restore-window-configuration 'append)
+              (add-hook 'ediff-suspend-hook restore-window-configuration 'append))))
 
 (provide 'ckuehne-editor)
 

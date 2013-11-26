@@ -136,12 +136,53 @@ When there is a text selection, act on the region."
 
       (put this-command 'stateIsCompact-p (if currentStateIsCompact nil t)) ) ) )
 
+;; Save, build, and view in one command
+;; from http://stackoverflow.com/a/14717941
+(defun build-view ()
+  (interactive)
+  (if (buffer-modified-p)
+      (progn  
+        (let ((TeX-save-query nil)) 
+          (TeX-save-document (TeX-master-file)))
+        (setq build-proc (TeX-command "LaTeX" 'TeX-master-file -1))
+        (set-process-sentinel  build-proc  'build-sentinel))
+    ;(TeX-view)
+))
+
+(defun build-sentinel (process event)    
+  (if (string= event "finished\n") 
+      ;(TeX-view)
+      nil
+    (message "Errors! Check with C-`")))
+
+(defun reftex-format-cref (label def-fmt)
+  (format "\\cref{%s}" label))
+
+(setq reftex-format-ref-function 'reftex-format-cref)
+
 (defun my-LaTeX-hook ()
-  (local-set-key (kbd "s-r") 'TeX-command-master)
+  (local-set-key (kbd "s-r") 'build-view)
   (local-set-key (kbd "M-q") 'compact-uncompact-block)
-)
+  )
 
 (add-hook 'LaTeX-mode-hook 'my-LaTeX-hook)
+
+;; Fontification
+;; http://tex.stackexchange.com/a/86119
+;; http://lists.gnu.org/archive/html/emacs-orgmode/2009-05/msg00236.html
+;; http://www.gnu.org/software/auctex/manual/auctex/Fontification-of-macros.html
+(setq font-latex-match-reference-keywords
+      '(
+        ;; cleveref
+        ("cref" "{")
+        ("Cref" "{")
+        ("cpageref" "{")
+        ("Cpageref" "{")
+        ("cpagerefrange" "{")
+        ("Cpagerefrange" "{")
+        ("crefrange" "{")
+        ("Crefrange" "{")
+        ("labelcref" "{")))
 
 (provide 'ckuehne-auctex)
 ;;; ckuehne-auctex.el ends here

@@ -136,32 +136,38 @@ When there is a text selection, act on the region."
 
       (put this-command 'stateIsCompact-p (if currentStateIsCompact nil t)) ) ) )
 
-;; Save, build, and view in one command
-;; from http://stackoverflow.com/a/14717941
-(defun build-view ()
+;; Save and build in one command. With optional view.
+;; Based on http://stackoverflow.com/a/14717941.
+;; Save and build only is useful when I write LaTeX with
+;; with Emacs and a pdf viewer side by side and the view is already open.
+(defun build-view(&optional view)
   (interactive)
-  (if (buffer-modified-p)
-      (progn  
-        (let ((TeX-save-query nil)) 
-          (TeX-save-document (TeX-master-file)))
-        (setq build-proc (TeX-command "LaTeX" 'TeX-master-file -1))
-        (set-process-sentinel  build-proc  'build-sentinel))
-    ;(TeX-view)
-))
+  (let ((TeX-save-query nil)) 
+    (TeX-save-document (TeX-master-file)))
+  (setq build-proc (TeX-command "LaTeX" 'TeX-master-file -1))
+  (if view
+      (set-process-sentinel  build-proc  'build-sentinel-view)
+  (set-process-sentinel  build-proc  'build-sentinel)))
 
 (defun build-sentinel (process event)    
-  (if (string= event "finished\n") 
-      ;(TeX-view)
-      nil
+  (if (not (string= event "finished\n"))
     (message "Errors! Check with C-`")))
+
+(defun build-sentinel-view (process event)    
+  (if (string= event "finished\n") 
+      (TeX-view)
+    (message "Errors! Check with C-`")))
+
 
 (defun reftex-format-cref (label def-fmt)
   (format "\\cref{%s}" label))
 
 (setq reftex-format-ref-function 'reftex-format-cref)
 
+
 (defun my-LaTeX-hook ()
   (local-set-key (kbd "s-r") 'build-view)
+  (local-set-key (kbd "<f5>") (lambda() (interactive) (build-view t)))
   (local-set-key (kbd "M-q") 'compact-uncompact-block)
   )
 

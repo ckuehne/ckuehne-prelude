@@ -190,5 +190,24 @@ When there is a text selection, act on the region."
         ("Crefrange" "{")
         ("labelcref" "{")))
 
+;; Cleveref with AUCTeX
+;; http://tex.stackexchange.com/a/119273
+(eval-after-load
+    "latex"
+  '(TeX-add-style-hook
+       "cleveref"
+     (lambda ()
+       (if (boundp 'reftex-ref-style-alist)
+	   (add-to-list
+	    'reftex-ref-style-alist
+	    '("Cleveref" "cleveref"
+	      (("\\cref" ?c) ("\\Cref" ?C) ("\\cpageref" ?d) ("\\Cpageref" ?D)))))
+       (add-to-list 'reftex-ref-style-default-list "Cleveref")
+       (TeX-add-symbols
+	'("cref" TeX-arg-ref)
+	'("Cref" TeX-arg-ref)
+	'("cpageref" TeX-arg-ref)
+	'("Cpageref" TeX-arg-ref)))))
+
 (provide 'ckuehne-auctex)
 ;;; ckuehne-auctex.el ends here

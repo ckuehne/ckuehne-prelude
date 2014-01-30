@@ -209,5 +209,7 @@ When there is a text selection, act on the region."
 	'("cpageref" TeX-arg-ref)
 	'("Cpageref" TeX-arg-ref)))))
 
+(require 'smartparens-latex)
+
 (provide 'ckuehne-auctex)
 ;;; ckuehne-auctex.el ends here

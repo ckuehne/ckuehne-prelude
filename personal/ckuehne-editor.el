@@ -92,7 +92,11 @@ Will only occur if prelude-whitespace is also enabled.")
 
 ;; use shift + arrow keys to switch between visible buffers
 (require 'windmove)
-(windmove-default-keybindings)
+;; (windmove-default-keybindings (kbd "<f2>"))
+(global-set-key (kbd "<f2> <left>")  'windmove-left)
+(global-set-key (kbd "<f2> <right>") 'windmove-right)
+(global-set-key (kbd "<f2> <up>")    'windmove-up)
+(global-set-key (kbd "<f2> <down>")  'windmove-down)
 
 
 (defmacro advise-commands (advice-name commands &rest body)

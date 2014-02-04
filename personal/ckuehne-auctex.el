@@ -211,5 +211,16 @@ When there is a text selection, act on the region."
 
 (require 'smartparens-latex)
 
+;; query replace inside math environments only
+;; from http://tex.stackexchange.com/a/65340
+(defun query-replace-math (a b)
+  (interactive "sfrom: \nsto: ")
+  (beginning-of-buffer)
+  (while (re-search-forward
+          "\\(\\\\(\\|\\\\\\[\\|[^\\\\]\$\$?\\|\\\\begin{equation}\\|\\\\begin{align}\\)" nil 1)
+    (query-replace-regexp a  b t  (point) 
+                          (progn (re-search-forward 
+                                  "\\(\\\\)\\|\\\\\\]\\|[^\\\\]\$\$?\\|\\\\end{equation}\\|\\\\end{align}\\)" nil 1) (point)))))
+
 (provide 'ckuehne-auctex)
 ;;; ckuehne-auctex.el ends here

@@ -39,3 +39,5 @@
         ("a" "ACT thoughts" entry (file "~/Documents/gtd/org/act.org")
          "* %?\nEntered on %U\n %i")
         ))
+
+(provide 'ckuehne-orgcapture)

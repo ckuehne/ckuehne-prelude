@@ -26,6 +26,7 @@
 (require 'ckuehne-global-keybindings)
 (require 'ckuehne-auctex)
 (require 'ckuehne-orgmode)
+(require 'ckuehne-orgcapture)
 
 ;; OSX specific settings
 (when (eq system-type 'darwin)

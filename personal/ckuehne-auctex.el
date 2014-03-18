@@ -37,10 +37,8 @@
 ;; super-/sub-script on baseline
 (setq font-latex-script-display (quote (nil)))
 ;; Do not change super-/sub-script font
-(custom-set-faces
- '(font-latex-subscript-face ((t nil)))
- '(font-latex-superscript-face ((t nil)))
- )
+(setq font-latex-fontify-script nil)
+
 ;; Exclude bold/italic from keywords
 (setq font-latex-deactivated-keyword-classes
       '("italic-command" "bold-command" "italic-declaration" "bold-declaration"))

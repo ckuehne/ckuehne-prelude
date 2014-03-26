@@ -1,3 +1,6 @@
+;; capture mode
+;; (setq org-default-notes-file (concat org-directory "/capture.org"))
+
 ;; TODO: put directory paths into variables (see init.el).
 ;; capture templates
 (setq org-capture-templates
@@ -13,17 +16,17 @@
         ("d" "d for diss")
         ("dt" "t for todo")
         ("dta" "allgemein" entry (file+headline "~/Projects/uni/diss/org/diss_todo.org" "Allgemein")
-         "* TODO %?\n %i")
-        ("dtp" "peersim" entry (file+headline "~/Projects/uni/diss/org/peersim.org" "TODOs")
-         "* TODO %?\n %i")
+         "* TODO %?\n")
+        ("dtp" "peersim" entry (file+headline "~/Projects/uni/diss/org/diss_todo.org" "Peersim")
+         "* TODO %?\n")
         ("dti" "Intro" entry (file+headline "~/Projects/uni/diss/org/diss_todo.org" "Introduction")
-         "* TODO %?\n %i")
+         "* TODO %?\n")
         ("dts" "StrucKnol" entry (file+headline "~/Projects/uni/diss/org/diss_todo.org" "Structured Knowledge")
-         "* TODO %?\n %i")
+         "* TODO %?\n")
         ("dtr" "Peer Review" entry (file+headline "~/Projects/uni/diss/org/diss_todo.org" "Peer Review")
-         "* TODO %?\n %i")
+         "* TODO %?\n")
         ("dtb" "Background" entry (file+headline "~/Projects/uni/diss/org/diss_todo.org" "Background")
-         "* TODO %?\n %i")
+         "* TODO %?\n")
         ("di" "Ideas/Snippets/Thoughts dissertation" entry (file "~/Projects/uni/diss/org/ideas_dissertation.org")
          "* %?\n %i")
         ("dj" "Diss-Journal" entry (file+datetree "~/Projects/uni/diss/org/dissjournal.org")

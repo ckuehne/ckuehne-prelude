@@ -181,7 +181,8 @@ The body of the advice is in BODY."
 ;; flyspell-mode does spell-checking on the fly as you type
 (require 'flyspell)
 (setq ispell-program-name "aspell" ; use aspell instead of ispell
-      ispell-extra-args '("--sug-mode=ultra"))
+      ispell-extra-args '(;"--sug-mode=ultra" 
+                          "--add-tex-command=\"fixme op\""))
 
 (defun prelude-enable-flyspell ()
   "Enable command `flyspell-mode' if `prelude-flyspell' is not nil."
@@ -200,7 +201,7 @@ The body of the advice is in BODY."
     (add-hook 'before-save-hook 'prelude-cleanup-maybe nil t)
     (whitespace-mode +1)))
 
-;; (add-hook 'text-mode-hook 'prelude-enable-flyspell)
+(add-hook 'text-mode-hook 'prelude-enable-flyspell)
 ;; (add-hook 'text-mode-hook 'prelude-enable-whitespace)
 
 ;; enable narrowing commands
@@ -326,6 +327,10 @@ indent yanked text (with prefix arg don't indent)."
 (prelude-require-package 'move-text)
 (require 'move-text)
 (move-text-default-bindings)
+
+(autoload 'svn-status "dsvn" "Run `svn status'." t)
+(require 'vc-svn)
+
 
 (provide 'ckuehne-editor)
 

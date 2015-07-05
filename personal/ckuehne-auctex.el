@@ -1,8 +1,8 @@
 ;; to install auctex for an existing brew emacs installation:
 ;;   git clone git://git.sv.gnu.org/auctex.git; cd auctex
+;;   or: cd auctex; git pull, if already cloned 
 ;;   ./autogen.sh
-;;   ./configure --with-emacs=usr/local/bin/emacs --with-texmf-dir=/usr/local/share/texmf/
-;;      --with-lispdir=/usr/local/share/emacs/site-lisp
+;;   ./configure --with-emacs=usr/local/bin/emacs --with-texmf-dir=/usr/local/share/texmf/ --with-lispdir=/usr/local/share/emacs/site-lisp
 ;;   make
 ;;   make install
 
@@ -30,6 +30,8 @@
 ;; set default latex to pdflatex
 (setq latex-run-command "pdflatex")
 (setq TeX-PDF-mode t)
+
+(setq LaTeX-command-style '(("" "%(PDF)%(latex) -file-line-error %S%(PDFout)")))
 
 ;; un-fontify
 ;; Only change sectioning colour

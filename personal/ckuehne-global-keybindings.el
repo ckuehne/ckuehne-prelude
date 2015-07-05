@@ -1,4 +1,4 @@
-;;; ckuehne-global-keybindings.el 
+;;; ckuehne-global-keybindings.el
 ;;; with large parts copied from Prelude by Bozhidar Batsov
 
 ;;; Code:
@@ -111,6 +111,7 @@
 (global-set-key (kbd "C-c s") 'prelude-swap-windows)
 (global-set-key (kbd "C-c D") 'prelude-delete-file-and-buffer)
 (global-set-key (kbd "C-c d") 'prelude-duplicate-current-line-or-region)
+(global-set-key (kbd "C-c d") 'prelude-duplicate-current-line-or-region)
 (global-set-key (kbd "C-c M-d") 'prelude-duplicate-and-comment-current-line-or-region)
 (global-set-key (kbd "C-c r") 'prelude-rename-file-and-buffer)
 (global-set-key (kbd "C-c t") 'prelude-visit-term-buffer)
@@ -119,6 +120,14 @@
 (global-set-key (kbd "C-c +") 'prelude-increment-integer-at-point)
 (global-set-key (kbd "C-c -") 'prelude-decrement-integer-at-point)
 
+
+;; ---------- Below are my own keybindings. Above are prelude's.
+
+;; Switch between buffers. Does not work in Terminal.
+;; Note: there is also "JJ" for prelude-switch-to-previous-buffer.
+(global-set-key (kbd "M-s-<right>") 'next-buffer)
+(global-set-key (kbd "M-s-<left>") 'previous-buffer)
+(global-set-key (kbd "C-x v e") 'ediff-revision)
 
 
 (provide 'ckuehne-global-keybindings)

@@ -62,5 +62,25 @@
   (f-ediff-org-showhide ediff-buffer-B 'hide-sublevels 1)  
   (f-ediff-org-showhide ediff-buffer-C 'hide-sublevels 1)  
   )
+
+;; add some Koma classes to the available orgmode LaTeX export classes
+(require 'ox-latex)
+(add-to-list 'org-latex-classes
+             '("scrreprt"
+               "\\documentclass{scrreprt}"
+               ;; ("\\part{%s}" . "\\part*{%s}")
+                ("\\chapter{%s}" . "\\chapter*{%s}")
+                ("\\section{%s}" . "\\section*{%s}")
+                ("\\subsection{%s}" . "\\subsection*{%s}")
+                ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+                )
+             '("scrartcl"
+               "\\documentclass{scrartcl}"
+               ;; ("\\part{%s}" . "\\part*{%s}")
+               ("\\section{%s}" . "\\section*{%s}")
+               ("\\subsection{%s}" . "\\subsection*{%s}")
+               ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+               ))
+
 (provide 'ckuehne-orgmode)
 ;;; ckuehne-orgmode.el ends here

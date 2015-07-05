@@ -56,5 +56,22 @@
 ;; A nice font with an adequate size for my thirty-something eyes.
 (setq default-frame-alist '((font . "Monaco-15")))
 
+; (require 'powerline)
+; (powerline-default-theme)
+
+(fset 'linebreak-german-to-english
+   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([19 46 return 24 113 right backspace return] 0 "%d")) arg)))
+
+(require 'ess-site)
+
+;; define function to shutdown emacs server instance
+;; from http://www.emacswiki.org/emacs/EmacsAsDaemon
+(defun server-shutdown ()
+  "Save buffers, Quit, and Shutdown (kill) server"
+  (interactive)
+  (save-some-buffers)
+  (kill-emacs)
+  )
+
 (provide 'ckuehne-ui)
 ;;; ckuehne-ui.el ends here

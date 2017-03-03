@@ -62,8 +62,6 @@
 (fset 'linebreak-german-to-english
    (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([19 46 return 24 113 right backspace return] 0 "%d")) arg)))
 
-(require 'ess-site)
-
 ;; define function to shutdown emacs server instance
 ;; from http://www.emacswiki.org/emacs/EmacsAsDaemon
 (defun server-shutdown ()

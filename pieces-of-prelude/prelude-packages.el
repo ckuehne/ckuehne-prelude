@@ -17,7 +17,7 @@
 (defvar prelude-packages
   '(ace-jump-mode diminish expand-region flx-ido ido-ubiquitous 
     key-chord magit smartparens smex undo-tree
-    volatile-highlights zenburn-theme)
+    volatile-highlights zenburn-theme ov epl)
   "A list of packages to ensure are installed at launch.")
 
 (defun prelude-packages-installed-p ()

@@ -1,3 +1,10 @@
+
+;; Added by Package.el.  This must come before configurations of
+;; installed packages.  Don't delete this line.  If you don't want it,
+;; just comment it out by adding a semicolon to the start of the line.
+;; You may delete these explanatory comments.
+(package-initialize)
+
 (message "Loading ckuehne-prelude setup.")
 (defvar dot-emacs-dot-d (file-name-directory load-file-name)
   "The root dir of the user configurations.")
@@ -49,3 +56,17 @@
 ;; reduce the frequency of garbage collection by making it happen on
 ;; each 50MB of allocated data (the default is on every 0.76MB)
 (setq gc-cons-threshold 50000000)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (zenburn-theme web-mode volatile-highlights undo-tree tabulated-list smex smartparens powerline pkg-info ov move-text magit key-chord ido-ubiquitous guru-mode gradle-mode gitignore-mode gitconfig-mode gist flx-ido f expand-region exec-path-from-shell ess-smart-underscore ess-R-object-popup ess-R-data-view dsvn diminish color-theme-solarized afternoon-theme ace-jump-mode))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )

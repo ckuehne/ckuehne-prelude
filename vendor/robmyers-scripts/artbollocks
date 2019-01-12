@@ -1,0 +1,76 @@
+#!/bin/bash
+
+# Copyright (c) 2010 Rob Myers <rob@robmyers.org>
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+# THE SOFTWARE.
+
+BOLLOCKS="\
+a priori|ad hoc|\
+affirmation|affirm|affirms|aporia|aporetic|appropriates|appropriation|\
+archetypal|archetypical|archetype|archetypes|autonomous|autonomy|\
+baudrillardian|baudrillarian|\
+commodification|committed|commitment|commonalities|contemporaneity|\
+context|contexts|contextual|contextualise|contextualises|contextualisation|\
+contextialize|contextializes|contextualization|\
+convention|conventional|conventions|coterminous|critique|cunning|cunningly|\
+death of the author|debunk|debunked|debunking|debunks|\
+deconstruct|deconstruction|deconstructs|deleuzian|desire|desires|\
+discourse|discursive|disrupt|disrupts|\
+engage|engagement|engages|episteme|epistemic|ergo|\
+fetish|fetishes|fetishise|fetishised|fetishize|fetishized|\
+gaze|gender|gendered|\
+historicise|historicisation|historicize|historicization|hegemonic|hegemony|\
+identity|identity politics|\
+intensifies|intensify|intensifying|interrogate|interrogates|interrogation|\
+intertextual|intertextuality|\
+irony|ironic|ironical|ironically|ironisation|ironization|ironises|ironizes|\
+jouissance|juxtapose|juxtaposes|juxtaposition|\
+lacanian|lack|loci|locus|locuses|\
+matrix|mocking|mockingly|modalities|modality|\
+myth|mythologies|mythology|myths|\
+narrative|narrativisation|narrativization|narrativity|nexus|nodal|node|\
+normative|normativity|notion|notions|\
+objective|objectivity|objectivities|objet petit a|ontology|ontological|\
+operate|operates|\
+otherness|othering|\
+paradigm|paradigmatic|paradigms|parody|parodic|parodies|physicality|\
+plenitude|poetics|popular notions|position|post hoc|\
+postmodern|postmodernist|postmodernity|\
+practice|practise|praxis|\
+problematic|problematics|proposition|\
+qua|\
+reading|readings|reification|relation|relational|relationality|relations|\
+representation|representations|rhizomatic|rhizome|\
+situate|situated|situates|\
+stereotype|stereotypes|strategy|strategies|\
+subjective|subjectivity|subjectivities|subvert|subversion|subverts|\
+text|textual|textuality|thinker|thinkers|trajectory|\
+transgress|transgresses|transgression|transgressive|\
+unfolding|undermine|undermining|undermines|\
+work|works|wry|wryly|\
+zizekian|zižekian"
+
+if [ $# = 0 ]; then
+ echo "usage: $(basename $0) <file> ..."
+ exit 1
+fi
+
+egrep --line-number --ignore-case --color "\\b(${BOLLOCKS})\\b" $*
+
+exit $?

@@ -1,0 +1,29 @@
+#!/bin/bash
+
+################################################################################
+# bysa - Set the licence of a file or files to CC-BY-SA
+# Copyright 2009 Rob Myers <rob@robmyers.org>
+# Licensed under the GNU GPL Version 3 or, at your option, any later version.
+################################################################################
+
+
+################################################################################
+# The licence url
+################################################################################
+
+LICENCE='http://creativecommons.org/licenses/by-sa/3.0'
+
+
+################################################################################
+# Set the licence(s)
+################################################################################
+
+if [ ! $1 ] ; then
+  echo "bysa filename|wildcard"
+  exit 1
+fi
+
+for FILE in $1; do
+  echo Applying by-sa to $FILE
+  `LD_LIBRARY_PATH=/usr/local/lib/ license --license $LICENCE "$FILE"`
+done

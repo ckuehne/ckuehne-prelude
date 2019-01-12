@@ -331,6 +331,8 @@ indent yanked text (with prefix arg don't indent)."
 (autoload 'svn-status "dsvn" "Run `svn status'." t)
 (require 'vc-svn)
 
+(message "setting smerge-command-prefix.")
+(setq smerge-command-prefix "")
 
 (provide 'ckuehne-editor)
 
